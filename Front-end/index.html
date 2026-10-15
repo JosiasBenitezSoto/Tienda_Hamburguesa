@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d0c">
+  <meta name="description" content="Hamburguesas, burritos y mucho sabor. Conoce nuestro menú y horario.">
+  <title>Food Drive — Hamburguesas con fuego</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="checkout.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- ============ ENCABEZADO ============ -->
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#horario">Servicios</a>
+      <a href="#productos">Productos</a>
+    </nav>
+
+    <a href="#inicio" class="brand" aria-label="Food Drive, inicio">
+      <img src="images/logo.svg" alt="Food Drive">
+    </a>
+
+    <div class="header-right">
+      <button class="cart-open" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 1.9-1.4L22 8H6M10 20a1 1 0 1 0 0 .01M18 20a1 1 0 1 0 0 .01"/>
+        </svg>
+        <span class="cart-count">0</span>
+      </button>
+      <a href="#horario" class="hours-link">Horario</a>
+      <div class="socials" aria-label="Redes sociales">
+        <a href="#contacto" aria-label="Facebook">f</a>
+        <a href="#contacto" aria-label="Twitter">♥</a>
+        <a href="#contacto" aria-label="Instagram">◎</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ PORTADA ============ -->
+    <section class="hero" id="inicio">
+      <button class="hero-arrow previous" aria-label="Producto anterior">‹</button>
+
+      <div class="hero-copy">
+        <p class="hero-kicker">RECIÉN SALIDAS DE LA PARRILLA</p>
+        <h1>HAMBURGUESA</h1>
+        <p>Una burger hecha para disfrutar.<br>Elige tu favorita y dale gusto al antojo.</p>
+        <div class="hero-actions">
+          <a class="outline-button" href="#productos">Comprar</a>
+          <a class="outline-button" href="#productos">Menú</a>
+        </div>
+      </div>
+
+      <div class="hero-product">
+        <img src="images/slider1.png" alt="Hamburguesa con bacon, queso y vegetales">
+        <span class="hero-flavor">La favorita de la casa</span>
+      </div>
+
+      <button class="hero-arrow next" aria-label="Producto siguiente">›</button>
+
+      <div class="hero-dots" aria-label="Diapositivas">
+        <button class="dot active" aria-label="Diapositiva 1"></button>
+        <button class="dot" aria-label="Diapositiva 2"></button>
+        <button class="dot" aria-label="Diapositiva 3"></button>
+      </div>
+    </section>
+
+    <!-- ============ MENÚ ============ -->
+    <section class="products-section" id="productos">
+      <div class="product-tabs" role="tablist" aria-label="Categorías del menú">
+        <button class="tab active" role="tab" aria-selected="true" data-filter="burger">Hamburguesas</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="burrito">Burritos</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="variety">Variedad</button>
+      </div>
+
+      <div class="product-rail">
+        <button class="rail-arrow rail-left" aria-label="Categoría anterior">‹</button>
+
+        <div class="product-grid">
+          <article class="product-card" data-category="burger" data-name="La Clásica" data-price="295">
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food1.png" alt="Hamburguesa clásica">
+            <div class="product-copy">
+              <strong>La Clásica</strong>
+              <small>Carne a la parrilla</small>
+              <b>RD$ 295</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="burger" data-name="Fuego Bacon" data-price="395">
+            <span class="new-tag">NUEVO</span>
+            <img src="images/slider1.png" alt="Hamburguesa con bacon">
+            <div class="product-copy">
+              <strong>Fuego Bacon</strong>
+              <small>Queso y bacon crujiente</small>
+              <b>RD$ 395</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="burger" data-name="Chicken Crunch" data-price="345">
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food3.png" alt="Hamburguesa crujiente">
+            <div class="product-copy">
+              <strong>Chicken Crunch</strong>
+              <small>Pollo crujiente y salsa</small>
+              <b>RD$ 345</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="burrito" data-name="Burrito Clásico" data-price="280" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food4.png" alt="Burrito de carne">
+            <div class="product-copy">
+              <strong>Burrito Clásico</strong>
+              <small>Carne, arroz y vegetales</small>
+              <b>RD$ 280</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="burrito" data-name="Burrito Pollo" data-price="295" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food5.png" alt="Burrito de pollo">
+            <div class="product-copy">
+              <strong>Burrito Pollo</strong>
+              <small>Pollo, guacamole y pico</small>
+              <b>RD$ 295</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="burrito" data-name="Burrito Mar y Tierra" data-price="360" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food6.png" alt="Burrito de camarones">
+            <div class="product-copy">
+              <strong>Burrito Mar y Tierra</strong>
+              <small>Camarón y carne</small>
+              <b>RD$ 360</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="variety" data-name="Ensalada Crunch" data-price="250" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food7.png" alt="Ensalada fresca">
+            <div class="product-copy">
+              <strong>Ensalada Crunch</strong>
+              <small>Fresca y recién preparada</small>
+              <b>RD$ 250</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="variety" data-name="Brochetas BBQ" data-price="275" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food8.png" alt="Brochetas a la parrilla">
+            <div class="product-copy">
+              <strong>Brochetas BBQ</strong>
+              <small>Carne y vegetales</small>
+              <b>RD$ 275</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+          <article class="product-card" data-category="variety" data-name="Pizza Pepperoni" data-price="320" hidden>
+            <span class="new-tag">NUEVO</span>
+            <img src="images/food9.png" alt="Pizza de pepperoni">
+            <div class="product-copy">
+              <strong>Pizza Pepperoni</strong>
+              <small>Queso y pepperoni</small>
+              <b>RD$ 320</b>
+              <button class="add-to-cart" type="button">Agregar al carrito</button>
+            </div>
+          </article>
+        </div>
+
+        <button class="rail-arrow rail-right" aria-label="Categoría siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- ============ INFORMACIÓN ============ -->
+    <section class="info-section" id="contacto">
+      <div class="info-photo">
+        <img src="images/info.png" alt="Hamburguesa crujiente preparada al momento">
+      </div>
+      <div class="info-copy">
+        <p class="section-kicker">BUEN SABOR, BUENOS MOMENTOS</p>
+        <h2>INFORMACIÓN</h2>
+        <p>En Food Drive creemos que una buena hamburguesa reúne a todos alrededor de la mesa. Preparamos cada pedido al momento, con ingredientes frescos y mucho sabor.</p>
+        <a href="#horario" class="red-button">Más información</a>
+      </div>
+    </section>
+
+    <!-- ============ HORARIO ============ -->
+    <section class="hours-section" id="horario">
+      <h2>HORARIO</h2>
+      <div class="hours-grid">
+        <div>
+          <h3>Dirección</h3>
+          <p>Av. Principal, Santo Domingo</p>
+          <p>República Dominicana</p>
+        </div>
+        <div>
+          <h3>Horario</h3>
+          <p>Lunes a viernes · 9:00 AM – 8:00 PM</p>
+          <p>Sábado y domingo · 11:00 AM – 7:00 PM</p>
+        </div>
+        <div>
+          <h3>Teléfono</h3>
+          <a href="tel:+18095555555">(809) 555-5555</a>
+        </div>
+        <div>
+          <h3>Síguenos</h3>
+          <div class="socials">
+            <a href="#contacto" aria-label="Facebook">f</a>
+            <a href="#contacto" aria-label="Twitter">♥</a>
+            <a href="#contacto" aria-label="Instagram">◎</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ PIE DE PÁGINA ============ -->
+  <footer class="site-footer">
+    <a href="#inicio"><img src="images/logo.svg" alt="Food Drive"></a>
+    <span>Hamburguesas hechas con sabor.</span>
+    <span>© 2026 Food Drive</span>
+  </footer>
+
+  <!-- ============ CARRITO Y DATOS DE ENTREGA ============ -->
+  <dialog class="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-panel">
+      <button class="cart-close" aria-label="Cerrar carrito">×</button>
+
+      <section class="cart-view">
+        <p class="section-kicker">TU PEDIDO</p>
+        <h2 id="cart-title">Carrito</h2>
+        <div class="cart-items"></div>
+        <p class="cart-empty">Tu carrito está vacío. Agrega algo rico del menú.</p>
+        <div class="cart-summary">
+          <span>Total</span>
+          <strong class="cart-total">RD$ 0</strong>
+        </div>
+        <button class="red-button checkout-button" type="button" disabled>Comprar</button>
+      </section>
+
+      <section class="checkout-view" hidden>
+        <button class="back-to-cart" type="button">← Volver al carrito</button>
+        <p class="section-kicker">CASI LISTO</p>
+        <h2>Datos de entrega</h2>
+
+        <form class="checkout-form">
+          <label>Nombre completo
+            <input name="name" autocomplete="name" required>
+          </label>
+          <label>Teléfono
+            <input name="phone" type="tel" autocomplete="tel" required>
+          </label>
+          <label>Dirección de entrega
+            <input name="address" autocomplete="street-address" required>
+          </label>
+          <label>Notas para el pedido <span>(opcional)</span>
+            <textarea name="notes" rows="3"></textarea>
+          </label>
+
+          <p class="form-message" role="status" aria-live="polite"></p>
+          <button class="red-button submit-order" type="submit">Enviar pedido</button>
+        </form>
+      </section>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Entorno virtual y cache de Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Base de datos local de pruebas (el proyecto usa SQL Server)
+db.sqlite3
+
+# Secretos: NUNCA se suben
+.env
+
+# Sistema y editores
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
