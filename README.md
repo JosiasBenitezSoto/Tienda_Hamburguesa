@@ -1,4 +1,4 @@
-# 🍔 Food Drive: tienda de hamburguesas
+#  Food Drive: tienda de hamburguesas
 
 Sistema web para una hamburguesería. El cliente ve el menú, arma su carrito,
 llena sus datos de entrega y envía el pedido, que queda guardado en SQL Server.
