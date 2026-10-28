@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#161a20">
+  <title>Food Drive — Panel de empleados</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="dashboard.js" defer></script>
+</head>
+
+<body>
+
+  <main class="login-screen" id="login-screen">
+    <form class="login-card" id="login-form" novalidate>
+      <img class="login-logo" src="images/logo.svg" alt="Food Drive">
+      <p class="kicker">PANEL DE EMPLEADOS</p>
+      <h1>Iniciar sesión</h1>
+
+      <label>Usuario
+        <input name="username" autocomplete="username" required>
+      </label>
+      <label>Contraseña
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+
+      <p class="form-message" id="login-message" role="alert"></p>
+      <button class="red-button wide" type="submit">Entrar</button>
+
+      <a class="back-link" href="index.html">← Volver a la tienda</a>
+    </form>
+  </main>
+
+  <div class="app" id="app" hidden>
+    <header class="app-header">
+      <a class="brand" href="index.html" aria-label="Ir a la tienda">
+        <img src="images/logo.svg" alt="Food Drive">
+      </a>
+
+      <nav class="app-nav" id="app-nav" aria-label="Secciones">
+        <button class="nav-tab" data-view="resumen" data-roles="Administrador">Resumen</button>
+        <button class="nav-tab" data-view="cocina" data-roles="Chef,Administrador">Cocina</button>
+        <button class="nav-tab" data-view="caja" data-roles="Cajero,Administrador">Caja</button>
+      </nav>
+
+      <div class="user-box">
+        <span class="live" id="live-status" title="Los pedidos se actualizan solos">
+          <span class="live-dot"></span><span id="live-text">En vivo</span>
+        </span>
+        <span class="user-name" id="user-name"></span>
+        <span class="role-chip" id="user-role"></span>
+        <button class="outline-button" id="logout-button" type="button">Salir</button>
+      </div>
+    </header>
+
+    <p class="banner" id="banner" role="status" hidden></p>
+
+    <!--  RESUMEN (Administrador)  -->
+    <section class="view" id="view-resumen" hidden>
+      <div class="view-head">
+        <div>
+          <p class="kicker">ADMINISTRACIÓN</p>
+          <h2>Resumen del negocio</h2>
+        </div>
+        <label class="inline-select">Período
+          <select id="dias-select">
+            <option value="7">Últimos 7 días</option>
+            <option value="14">Últimos 14 días</option>
+            <option value="30">Últimos 30 días</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="stats">
+        <article class="stat"><span>Ventas de hoy</span><strong id="stat-ventas">—</strong></article>
+        <article class="stat"><span>Pedidos de hoy</span><strong id="stat-pedidos">—</strong></article>
+        <article class="stat"><span>Ticket promedio</span><strong id="stat-ticket">—</strong></article>
+        <article class="stat"><span>Pedidos en curso</span><strong id="stat-curso">—</strong></article>
+      </div>
+
+      <div class="admin-grid">
+        <article class="panel">
+          <h3 id="chart-title">Ventas por día</h3>
+          <div class="chart" id="sales-chart"></div>
+          <div class="chart-tip" id="chart-tip" hidden></div>
+        </article>
+        <article class="panel">
+          <h3>Productos más vendidos</h3>
+          <ol class="top-list" id="top-list"></ol>
+        </article>
+      </div>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h3>Últimos pedidos</h3>
+          <label class="inline-select">Estado
+            <select id="estado-filter">
+              <option value="">Todos</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="en_preparacion">En preparación</option>
+              <option value="listo">Listo</option>
+              <option value="entregado">Entregado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr><th>#</th><th>Hora</th><th>Cliente</th><th>Productos</th><th class="num">Total</th><th>Estado</th></tr>
+            </thead>
+            <tbody id="admin-orders"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <!-- COCINA (Chef)  -->
+    <section class="view" id="view-cocina" hidden>
+      <div class="view-head">
+        <div>
+          <p class="kicker">COCINA</p>
+          <h2>Pedidos por preparar</h2>
+        </div>
+        <p class="hint">Los más antiguos aparecen primero.</p>
+      </div>
+
+      <div class="board">
+        <div class="column" data-estado="pendiente">
+          <h3>Pendientes <span class="count" id="count-pendiente">0</span></h3>
+          <div class="tickets" id="col-pendiente"></div>
+        </div>
+        <div class="column" data-estado="en_preparacion">
+          <h3>En preparación <span class="count" id="count-en_preparacion">0</span></h3>
+          <div class="tickets" id="col-en_preparacion"></div>
+        </div>
+        <div class="column" data-estado="listo">
+          <h3>Listos <span class="count" id="count-listo">0</span></h3>
+          <div class="tickets" id="col-listo"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAJA (Cajero) -->
+    <section class="view" id="view-caja" hidden>
+      <div class="view-head">
+        <div>
+          <p class="kicker">CAJA</p>
+          <h2>Pedidos de hoy</h2>
+        </div>
+        <button class="red-button" id="new-order-button" type="button">+ Pedido en mostrador</button>
+      </div>
+
+      <div class="caja-grid">
+        <article class="panel">
+          <h3>Listos para entregar <span class="count" id="count-entregar">0</span></h3>
+          <div class="tickets" id="caja-listos"></div>
+        </article>
+        <article class="panel">
+          <h3>En curso <span class="count" id="count-curso">0</span></h3>
+          <div class="tickets" id="caja-curso"></div>
+        </article>
+      </div>
+
+      <article class="panel">
+        <h3>Historial de hoy</h3>
+        <div class="table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr><th>#</th><th>Hora</th><th>Cliente</th><th>Teléfono</th><th class="num">Total</th><th>Estado</th></tr>
+            </thead>
+            <tbody id="caja-historial"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <dialog class="modal" id="order-dialog" aria-labelledby="order-title">
+    <form class="modal-panel" id="order-form" method="dialog">
+      <button class="modal-close" type="button" id="order-close" aria-label="Cerrar">×</button>
+      <p class="kicker">CAJA</p>
+      <h2 id="order-title">Pedido en mostrador</h2>
+
+      <div class="pos-products" id="pos-products"></div>
+
+      <div class="pos-summary">
+        <div class="pos-lines" id="pos-lines"><p class="muted">Toca un producto para agregarlo.</p></div>
+        <div class="pos-total"><span>Total</span><strong id="pos-total">RD$ 0</strong></div>
+      </div>
+
+      <label>Nombre del cliente
+        <input name="name" placeholder="Cliente en mostrador">
+      </label>
+      <label><span>Notas <span class="muted">(opcional)</span></span>
+        <input name="notes" placeholder="Ej.: sin cebolla">
+      </label>
+
+      <p class="form-message" id="order-message" role="status"></p>
+      <button class="red-button wide" id="order-submit" type="submit" disabled>Registrar pedido</button>
+    </form>
+  </dialog>
+</body>
+</html>

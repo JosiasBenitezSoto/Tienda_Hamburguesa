@@ -1,8 +1,12 @@
 from decimal import Decimal
+
 from django.db import transaction
 from rest_framework import serializers
-from .models import Pedido, DetallePedido
 
+from .models import DetallePedido, ESTADOS, Pedido
+
+
+# ---------- Crear pedido (lo usan la tienda y el cajero) ----------
 
 class ClienteSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=120)
@@ -44,3 +48,28 @@ class PedidoSerializer(serializers.Serializer):
             for i in items
         ])
         return pedido
+
+
+# ---------- Leer pedidos (dashboard) ----------
+
+class DetalleLecturaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetallePedido
+        fields = ["producto", "precio_unitario", "cantidad", "subtotal"]
+
+
+class PedidoLecturaSerializer(serializers.ModelSerializer):
+    detalles = DetalleLecturaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Pedido
+        fields = [
+            "id", "cliente_nombre", "cliente_telefono", "direccion_entrega",
+            "notas", "total", "moneda", "estado", "creado_en", "detalles",
+        ]
+
+
+# ---------- Cambiar estado ----------
+
+class CambioEstadoSerializer(serializers.Serializer):
+    estado = serializers.ChoiceField(choices=[valor for valor, _ in ESTADOS])

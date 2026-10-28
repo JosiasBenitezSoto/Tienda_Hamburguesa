@@ -1,3 +1,2 @@
 USE hamburgueseria;
-SELECT * FROM pedidos;
-SELECT * FROM detalle_pedido;
+SELECT * FROM pedidos ORDER BY id DESC;
